@@ -9,9 +9,16 @@
 
 int main() {
 
-    CEnglish Man;
+    CEnglish Boy;
+    CFrench Garcon;
+    CGerman Junge;
+    CTalkativeEnglish Jeremy;
 
-    Man.GreetUser();
+
+    Boy.GreetUser();
+    Garcon.GreetUser();
+    Junge.GreetUser();
+    Jeremy.GreetUser();
 
     return 0;
 }
