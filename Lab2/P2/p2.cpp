@@ -20,5 +20,14 @@ int main() {
     Junge.GreetUser();
     Jeremy.GreetUser();
 
+    std::cout << "Enter 6 numbers between 0-3: " << std::endl;
+
+    int* pElements;
+
+    for(int i=0; i<6; i++) {
+        
+    }
+    
+
     return 0;
 }

@@ -38,6 +38,7 @@ class CTalkativeEnglish: public CEnglish {
     public:
         CTalkativeEnglish() {
             _Greeting = "Hello, World! What a wonderful day it is today.";
+            std::cout << "DTor Talkative English" << std::endl;
         }
         ~CTalkativeEnglish() {
             std::cout << "DTor Talkative English" << std::endl;
