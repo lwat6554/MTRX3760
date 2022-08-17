@@ -8,7 +8,7 @@
 #include "speaker.h"
 
 int main() {
-
+/*
     CEnglish Boy;
     CFrench Garcon;
     CGerman Junge;
@@ -19,15 +19,34 @@ int main() {
     Garcon.GreetUser();
     Junge.GreetUser();
     Jeremy.GreetUser();
-
+*/
     std::cout << "Enter 6 numbers between 0-3: " << std::endl;
 
-    int* pElements;
+
+    int aElements[6];
 
     for(int i=0; i<6; i++) {
-        
+        std::cin >> aElements[i];
+        //std::cout << " " << std::ends;
     }
     
+    //CSpeaker Person[6];
+
+    for(int i = 0; i<6; i++) {
+
+        std::cout << i << ": " << aElements[i] << std::endl;
+
+        if(aElements[i] == 0){
+            CEnglish A;
+        } else if(aElements[i]==1) {
+            CFrench B;
+        } else if(aElements[i]==2){
+            CGerman C;
+        } else if(aElements[i]==3){
+            CTalkativeEnglish D;
+        }
+
+    }
 
     return 0;
 }
