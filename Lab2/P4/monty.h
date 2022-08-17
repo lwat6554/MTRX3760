@@ -1,6 +1,8 @@
 #ifndef __MONTY_H
 #define _MONTY_H
 
+class Doors;
+
 class Game {
 
     public:
@@ -11,28 +13,39 @@ class Game {
         void Run(); 
 
     private:
-        int _NumDoors;
+        
 
 };
 
 class Player {
 
     public:
+        Player(Doors* DName);
+        ~Player();
 
+        int ChooseDoor();
 
 
     private:
-
+        Doors* pWhichDoors;
+        int _ChosenDoor;
 };
 
 
 class Host {
 
     public:
+        Host(Doors* DName);
+        ~Host();
 
+        void AskDoorChoice(Player* PName);
+        void AskDoorAgain();
+        int OpenDoors();
 
 
     private:
+        Doors* pWhichDoors;
+        int _LastOpenDoor;
 };
 
 
@@ -42,9 +55,12 @@ class Doors {
         Doors();
         ~Doors();
 
+        int ReportHiddenDoor();
+        int ReportNumDoors();
 
     private:
         int _HiddenNum;
+        int _NumDoors;
 };
 
 
