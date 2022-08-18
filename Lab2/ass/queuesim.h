@@ -14,12 +14,12 @@ class Teller {
         Teller(int Num = 2, int AvgCap = 3);  //tellers number in checkout, average capacity per cycle, 
         ~Teller();
 
-        void TellerProcess();               // Processes one cycles, will remove _TellerCapacity from queue
+        void Process();               // Processes one cycles, will remove _TellerCapacity from queue
         int QueueReport();                  //Returns length of queue
         void AddQueue();                    //adds to teller queue
         
     private:
-        int _TellerCapacity;       // how many customers a teller processes in a cycle
+        int _AvgCapacity;       // how many customers a teller processes in a cycle
         int _QueueLength;          // length of queue
         int _TellerNumber;         // number teller is at checkout
 };
@@ -27,7 +27,7 @@ class Teller {
 class Checkout {
 
     public:
-        Checkout(int TellersNum = 3, int NewCust = 6);   //Number of tellers, Avgerage new customers at checkout
+        Checkout(Teller** ppTeller, int TellersNum = 3, int NewCust = 6);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
         ~Checkout();
 
         void FindShortestQueue();            // finds the shortest queue from an array of queue lengths
@@ -37,17 +37,18 @@ class Checkout {
     private:
         int _NumTellers;            // number of tellers in the checkout
         int _ShortestQ;              // current shortest queue
-        int _AvgNewCustl;           //average numbers of new customers
-        Teller* pTellEmployee[];
+        int _AvgNewCustomer;           //average numbers of new customers
+        Teller** pTellEmployee;
 };
 
 class Simulator {
 
     public:
-        Simulator(int cyc = 100);
+        //simulation cycles, number of tellers, average teller process per cycle, average new custmers each cycle
+        Simulator(int cyc = 1000, int TellersNum = 2, int TellerCycleAvg = 3, int AvgCustomerPerCycle = 6); 
         ~Simulator();
 
-        void RunSimulation(int cycles, int TellersNum, int CapCycle, int MaxNewCustomerPerCycle);        //controls the running of the simulation and takes
+        void RunSimulation();        //controls the running of the simulation and takes
         //all inputs required for simulation
 
     private:

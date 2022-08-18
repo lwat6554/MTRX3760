@@ -12,7 +12,16 @@
 #include "queuesim.h"
 
 int main() {
+
     
+
+    srand(time(0));
+
+    Teller Employee[2];
+
+    Checkout Coles(&Employee);
+    Coles.FindShortestQueue();
+
 
     return 0;
 }
