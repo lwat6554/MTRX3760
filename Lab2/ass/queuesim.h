@@ -27,7 +27,7 @@ class Teller {
 class Checkout {
 
     public:
-        Checkout(Teller** ppTeller, int TellersNum = 3, int NewCust = 6);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
+        Checkout(int TellersNum = 3, int NewCust = 6);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
         ~Checkout();
 
         void FindShortestQueue();            // finds the shortest queue from an array of queue lengths
@@ -38,7 +38,7 @@ class Checkout {
         int _NumTellers;            // number of tellers in the checkout
         int _ShortestQ;              // current shortest queue
         int _AvgNewCustomer;           //average numbers of new customers
-        Teller** pTellEmployee;
+        Teller aTellEmployee[];
 };
 
 class Simulator {

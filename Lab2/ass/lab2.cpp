@@ -17,9 +17,7 @@ int main() {
 
     srand(time(0));
 
-    Teller Employee[2];
-
-    Checkout Coles(&Employee);
+    Checkout Coles;
     Coles.FindShortestQueue();
 
 

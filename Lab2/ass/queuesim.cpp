@@ -47,14 +47,12 @@ void Teller::AddQueue() {
 
 //---------------------Customer Methods-------------------------
 
-Checkout::Checkout(Teller** ppTeller, int TellersNum, int NewCust) 
+Checkout::Checkout(int TellersNum, int NewCust) 
     :_NumTellers(TellersNum),
     _AvgNewCustomer(NewCust),
-    _ShortestQ(-1),
-    pTellEmployee(ppTeller)
-
+    _ShortestQ(-1)
 {
-        //Teller* pTellEmployee[_NumTellers];
+        Teller aTellEmployee[_NumTellers];
         std::cout << "CTOR Customer" << std::endl;
 };
 
@@ -65,20 +63,16 @@ Checkout::~Checkout() {
 void Checkout::FindShortestQueue() {
 
     
-
     _ShortestQ = 0;
-    int Length = pTellEmployee[0]->QueueReport(); //find length of queue 0
+    int Length = aTellEmployee[0].QueueReport(); //find length of queue 0
 
     //loop through all tellers to find shortest queue, if tie lowest number teller is allocated
     for(int i=1; i<_NumTellers; i++) {
         //find if current queue (i) is shorter than shortest queue
-        if(Length > pTellEmployee[i]->QueueReport()) {
+        if(Length > aTellEmployee[i].QueueReport()) {
             //assign new shortest queue
             _ShortestQ = i;
-            Length = pTellEmployee[i]->QueueReport();
+            Length = aTellEmployee[i].QueueReport();
         }
     }
-
-
-    std::cout << _ShortestQ << std::endl;
 };
