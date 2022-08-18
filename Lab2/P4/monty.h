@@ -40,12 +40,13 @@ class Host {
 
         void AskDoorChoice(Player* PName);
         void AskDoorAgain();
-        int OpenDoors();
+        void OpenDoors();
 
 
     private:
         Doors* pWhichDoors;
-        int _LastOpenDoor;
+        int _2ndChoiceDoor;
+        int _DoorChoice;
 };
 
 

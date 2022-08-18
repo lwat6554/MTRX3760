@@ -19,6 +19,7 @@ void Game::Run() {
     Host Paul(&Wooden);
 
     Paul.AskDoorChoice(&Chad);
+    
 };
 
 
@@ -27,11 +28,11 @@ Doors::Doors()
    : _NumDoors(3)
 {
     std::cout << "CTOR Doors" << std::endl;
-
     //create hidden door
-    _HiddenNum = rand()% _NumDoors;
+    _HiddenNum = rand() % 3;
     std::cout << "Hidden Number is " << _HiddenNum << std::endl;
 };
+
 
 Doors::~Doors() {
     std::cout << "DTOR Doors" << std::endl;
@@ -48,7 +49,9 @@ int Doors::ReportNumDoors() {
 
 //------------Host
 Host::Host(Doors* DName) 
-    :pWhichDoors(DName)
+    :pWhichDoors(DName),
+    _2ndChoiceDoor(-1),
+    _DoorChoice(-1)
 {
     std::cout << "CTOR Host" << std::endl;
 };
@@ -58,11 +61,29 @@ Host::~Host() {
 };
 
 void Host::AskDoorChoice(Player* PName) {
-    std::cout << "Pick a door between 0 and " << pWhichDoors->ReportNumDoors() << std::endl;
+    std::cout << "Pick a door between 0 and " << pWhichDoors->ReportNumDoors()-1 << std::endl;
 
-    PName->ChooseDoor();
+    _DoorChoice = PName->ChooseDoor();
 
-}
+    OpenDoors();
+
+};
+
+void Host::OpenDoors() {
+    
+    _2ndChoiceDoor = rand() % pWhichDoors->ReportNumDoors();
+
+    if(_DoorChoice==pWhichDoors->ReportHiddenDoor()) {
+        while(_2ndChoiceDoor == _DoorChoice) {
+         _2ndChoiceDoor = rand() % pWhichDoors->ReportNumDoors();
+        }
+    } else {
+        _2ndChoiceDoor = pWhichDoors->ReportHiddenDoor();
+    }
+    
+
+    //std::cout << "OpenDoors: " << _2ndChoiceDoor << std::endl;
+};
 
 //------------Player
 Player::Player(Doors* DName)
@@ -76,11 +97,10 @@ Player::~Player(){
 }
 
 int Player::ChooseDoor() {
-    //std::cout << "ChooseDoor" << _ChosenDoor << pWhichDoors->ReportNumDoors() << std::endl;
     
-    while(_ChosenDoor<0 && _ChosenDoor>pWhichDoors->ReportNumDoors()) {
+    while(_ChosenDoor<0 || _ChosenDoor>pWhichDoors->ReportNumDoors()) {
         std::cin >> _ChosenDoor;
-        std::cout << "Test 81" << std::endl;
+    
     }
 
     return _ChosenDoor;
