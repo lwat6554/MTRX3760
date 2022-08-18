@@ -5,12 +5,22 @@
 
 int main() {
 
-    Game Hall;
+    srand(time(0));
 
-    Hall.Run();
     
-    Hall;
+    Game Hall;
+    //Hall.Run(); 
+    std::cout << "Choose strat (0 change, 1 stay, 2 random)" << std::endl;
 
+    int strat;
+    std::cin >> strat;
+
+    Hall.RunSim(strat, 1000, 100); // strat (0 change, 1 stay, 2 random) , cycles
+
+
+
+
+ 
     return 0;
 
 }
