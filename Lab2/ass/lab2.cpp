@@ -15,17 +15,13 @@ int main() {
 
     
 
-    srand(time(0));
+    srand(time(0)); //random number generator same for both strategies, different every run time
 
 
 
-    /*Checkout Coles;
-    Coles.AddNewCustomers();
-    Coles.ProcessTellersOneCycle();
-    */
+    Simulator Computor(1, false);
 
-    Simulator Computor;
-
-    Computor.RunSimulation();
+    //Computor.RunSimulation();
+    Computor.StratComparison();
 
 }
