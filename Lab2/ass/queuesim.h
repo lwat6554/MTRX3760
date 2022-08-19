@@ -11,7 +11,8 @@
 class Teller {
 
     public:
-        Teller(int Num = 2, int AvgCap = 3);  //tellers number in checkout, average capacity per cycle, 
+        //Teller();
+        Teller(int Num=0, int AvgCap = 3);  //tellers number in checkout, average capacity per cycle, 
         ~Teller();
 
         void Process();               // Processes one cycles, will remove _TellerCapacity from queue
@@ -27,7 +28,7 @@ class Teller {
 class Checkout {
 
     public:
-        Checkout(int TellersNum = 3, int NewCust = 6);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
+        Checkout(int TellersNum = 2, int NewCust = 6);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
         ~Checkout();
 
         void FindShortestQueue();            // finds the shortest queue from an array of queue lengths
@@ -38,21 +39,21 @@ class Checkout {
         int _NumTellers;            // number of tellers in the checkout
         int _ShortestQ;              // current shortest queue
         int _AvgNewCustomer;           //average numbers of new customers
-        Teller aTellEmployee[];
+        Teller* pTellEmployee;
 };
 
 class Simulator {
 
     public:
         //simulation cycles, number of tellers, average teller process per cycle, average new custmers each cycle
-        Simulator(int cyc = 1000, int TellersNum = 2, int TellerCycleAvg = 3, int AvgCustomerPerCycle = 6); 
+        Simulator(int cyc = 100); 
         ~Simulator();
 
-        void RunSimulation();        //controls the running of the simulation and takes
-        //all inputs required for simulation
+        //controls the running of the simulation and takes all inputs required for simulation
+        void RunSimulation(int TellersNum = 2, int TellerCycleAvg = 3, int AvgCustomerPerCycle = 6);        
 
     private:
-        int _SimDurationCycles;     // duration of simulation, in cycles
+        int _TotalCycles;     // duration of simulation, in cycles
         int _CurrentCycle;           // current cycle of simulation
 };
 

@@ -17,9 +17,15 @@ int main() {
 
     srand(time(0));
 
-    Checkout Coles;
-    Coles.FindShortestQueue();
 
 
-    return 0;
+    /*Checkout Coles;
+    Coles.AddNewCustomers();
+    Coles.ProcessTellersOneCycle();
+    */
+
+    Simulator Computor;
+
+    Computor.RunSimulation();
+
 }
