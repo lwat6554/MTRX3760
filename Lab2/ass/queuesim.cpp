@@ -56,9 +56,10 @@ void Teller::AddQueue() {
 };
 
 
-//---------------------Customer Methods-------------------------
 
-Checkout::Checkout(int Strat, int TellersNum, int NewCust, bool Print) 
+//---------------------Checkout Methods-------------------------
+
+Checkout::Checkout(int Strat, int TellersNum, int NewCust, bool Print, int TellerAvgCap) 
     :_NumTellers(TellersNum),
     _AvgNewCustomer(NewCust),
     _ShortestQ(-1),
@@ -66,7 +67,7 @@ Checkout::Checkout(int Strat, int TellersNum, int NewCust, bool Print)
     _Print(Print)
 {
     if(_Print) {
-        std::cout << "CTOR Customer" << std::endl;
+        std::cout << "CTOR Checkout" << std::endl;
     }
 
     
@@ -74,17 +75,19 @@ Checkout::Checkout(int Strat, int TellersNum, int NewCust, bool Print)
 
     for(int i=0; i<_NumTellers; i++) {
 
-        pTellEmployee[i] = Teller(i, NewCust, Print);
+        pTellEmployee[i] = Teller(i, TellerAvgCap, _Print);
 
         //std::cout << i << std::endl;
     }
+
 };
 
 Checkout::~Checkout() {
     delete [] pTellEmployee;
 
+
     if(_Print) {
-        std::cout << "DTOR Customer" << std::endl;
+        std::cout << "DTOR Checkout" << std::endl;
     }
 };
 
@@ -153,6 +156,8 @@ double Checkout::ReportAvgQLength() {
         Total += (double)pTellEmployee[i].QueueReport();
     }
 
+    //std::cout << Total / (double)_NumTellers << std::endl;
+
     return Total / (double)_NumTellers;
 };
 
@@ -179,7 +184,7 @@ Simulator::~Simulator() {
 
 void Simulator::RunSimulation(int TellersNum, int TellerCycleAvg, int AvgCustomerPerCycle) {
 
-    Checkout Coles(_QStrat, TellersNum, AvgCustomerPerCycle, _Print);
+    Checkout Coles(_QStrat, TellersNum, AvgCustomerPerCycle, _Print, TellerCycleAvg);
 
     //loop through each cycle, adding new customers and then processing them
     for(_CurrentCycle=0; _CurrentCycle< _TotalCycles; _CurrentCycle++) {
@@ -204,7 +209,7 @@ void Simulator::StratComparison() {
     _QStrat = 0;
     _TotalQLength = 0;
     _CurrentCycle = 0;
-    RunSimulation(0, false);
+    RunSimulation();
 
     std::cout << "Shortest Queue Strat Average Queue: " << _TotalQLength / (double)(_CurrentCycle+1) << std::endl;
 
@@ -212,7 +217,7 @@ void Simulator::StratComparison() {
     _CurrentCycle = 0;
     _QStrat = 1;
 
-    RunSimulation(1, false);
+    RunSimulation();
     std::cout << "Random Queue Strat Average Queue: " << _TotalQLength / (double)(_CurrentCycle+1) << std::endl;
 
 

@@ -19,9 +19,10 @@ int main() {
 
 
 
-    Simulator Computor(1, false);
-
-    //Computor.RunSimulation();
+    Simulator Computor(0, false);
     Computor.StratComparison();
+
+
+
 
 }

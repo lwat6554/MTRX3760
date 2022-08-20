@@ -26,10 +26,11 @@ class Teller {
         bool _Print;
 };
 
+
 class Checkout {
 
     public:
-        Checkout(int Strat = 0, int TellersNum = 2, int NewCust = 6, bool Print = false);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
+        Checkout(int Strat = 0, int TellersNum = 2, int NewCust = 6, bool Print = false, int TellerAvgCap = 3);   //pointer to tellers, Number of tellers, Avgerage new customers at checkout
         ~Checkout();
 
         void FindShortestQueue();            // finds the shortest queue from an array of queue lengths
@@ -54,7 +55,7 @@ class Simulator {
         ~Simulator();
 
         //controls the running of the simulation and takes all inputs required for simulation
-        void RunSimulation(int TellersNum = 3, int TellerCycleAvg = 3, int AvgCustomerPerCycle = 6);  
+        void RunSimulation(int TellersNum = 2, int TellerCycleAvg = 3, int AvgCustomerPerCycle = 6);  
         
         void StratComparison(); 
 
@@ -65,5 +66,7 @@ class Simulator {
         bool _Print;            //if function prints to terminal or not
         double _TotalQLength;
 };
+
+
 
 #endif
