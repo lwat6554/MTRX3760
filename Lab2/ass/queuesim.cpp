@@ -1,3 +1,6 @@
+//SID: 500490778
+//Date: 8/22
+
 #include <iostream>     // std::cout
 #include <algorithm>    // std::max
 #include <cstdlib>
@@ -219,7 +222,5 @@ void Simulator::StratComparison() {
 
     RunSimulation();
     std::cout << "Random Queue Strat Average Queue: " << _TotalQLength / (double)(_CurrentCycle+1) << std::endl;
-
-
 
 };
