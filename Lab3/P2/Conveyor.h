@@ -28,12 +28,16 @@ class Item{
         Item(int ID);
         ~Item();
         
-        static int time;
+        static int _Time;
+        static int _ItemsProcessed;
+        static double _TotalProcessingTime;
+
         static int FindShortestItem();
 
     private:
         int _ID;
-        double _ProcessTime;
+        double _InitTime;
+        
 
 };
 

@@ -36,3 +36,9 @@ void Conveyor::Report()
 
 
 
+
+Item::Item(int ID) 
+: _ID(ID),
+  _InitTime(_Time)
+{}
+

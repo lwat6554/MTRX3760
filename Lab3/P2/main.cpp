@@ -26,6 +26,10 @@ int main()
     myLoader.Init( &myConveyor );
     myProcessor.Init( &myConveyor );
 
+    Item::_Time=0;
+    Item::_ItemsProcessed=0;
+    Item::_TotalProcessingTime=0;
+
     while( 1 )
     {
         myLoader.AddItems();
